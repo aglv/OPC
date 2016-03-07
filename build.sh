@@ -46,10 +46,12 @@ function build {
 			
 			for a in libopc libmce libplib; do
 				lipo "../../$a.a" -thin "$arch" -output "$a.a"
-				ar -x "$a.a"
+				mkdir -p "$a"; cd "$a"
+				ar -x "../$a.a"
+				cd ..
 			done
 			
-			ar -qc lib.a *.o
+			ar -qc lib.a **/*.o
 			
 			cd ../..
 			archs="$archs tmp/$arch/lib.a"
