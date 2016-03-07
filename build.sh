@@ -2,15 +2,15 @@
 
 d=`pwd`
 
-if [ ! -f libopc.zip ] ; then
-	echo "Please download the libopc archive from https://libopc.codeplex.com/SourceControl/latest# and move the downloaded zip file to $d/libopc.zip"
+if [ ! -f build/libopc.zip ] ; then
+	echo "Please download the libopc archive from https://libopc.codeplex.com/SourceControl/latest# and move the downloaded zip file to $d/build/libopc.zip"
 	exit 1
 fi
 
-rm -Rf build
 mkdir -p build
+rm -Rf build/libopc
 
-ditto -xk libopc.zip build/libopc
+ditto -xk build/libopc.zip build/libopc
 
 function build {
 	platform="$1"
@@ -74,11 +74,11 @@ function build {
 	
 	echo "// OPC.framework built by Alessandro Volz, © 2016 volz.io\n" >> OPC.h
 	find . -name '*.h' | while read header; do
-		echo "#import \"$header\"" >> OPC.h
-		
 		name="${header##*/}"
 		dir="${header%$name}"
 		dir="${dir:2}"
+
+		echo "#import \"$dir/$name\"" >> OPC.h
 
 		sed -i '' -e "s/^\(#[ ]*include \)<${dir//\//\\/}\(.*\)>/\1\"\2\"/g" "$header"
 	
@@ -96,9 +96,12 @@ function build {
 
 for target in release debug; do
 	cd "$d/build/libopc"
+	
 	build "darwin-$target-gcc-universal" "$target" "x86_64,i386"
+	
+	rm -Rf "$d/libs/$target/OPC.framework"
+	cp -af "$d/build/libopc/build/darwin-$target-gcc-universal/static/OPC.framework" "$d/libs/$target/"
 done
 
 echo done
-
 exit 0;
