@@ -11,6 +11,7 @@ mkdir -p build
 rm -Rf build/libopc
 
 ditto -xk build/libopc.zip build/libopc
+export MACOSX_DEPLOYMENT_TARGET=10.7
 
 function build {
 	platform="$1"
