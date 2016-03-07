@@ -74,6 +74,8 @@ function build {
 	
 	echo "// OPC.framework built by Alessandro Volz, © 2016 volz.io\n" >> OPC.h
 	find . -name '*.h' | while read header; do
+		if [ "$header" = "./OPC.h" ]; then continue; fi
+		
 		name="${header##*/}"
 		dir="${header%$name}"
 		dir="${dir:2}"

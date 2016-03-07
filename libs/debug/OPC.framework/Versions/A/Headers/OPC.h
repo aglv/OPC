@@ -18,5 +18,4 @@
 #import "opc/xmlreader.h"
 #import "opc/xmlwriter.h"
 #import "opc/zip.h"
-#import "OPC.h"
 #import "plib/plib.h"
