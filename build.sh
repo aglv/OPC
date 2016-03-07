@@ -78,7 +78,7 @@ function build {
 		dir="${header%$name}"
 		dir="${dir:2}"
 
-		echo "#import \"$dir/$name\"" >> OPC.h
+		echo "#import \"$dir$name\"" >> OPC.h
 
 		sed -i '' -e "s/^\(#[ ]*include \)<${dir//\//\\/}\(.*\)>/\1\"\2\"/g" "$header"
 	
