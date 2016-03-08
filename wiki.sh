@@ -6,14 +6,14 @@ cd build/libopc
 doxygen Doxyfile
 
 rm -Rf doc/md
-cp -Rf doc/xml doc/md
+cp -Rf doc/html doc/md
 
-echo "Warning: pandoc XML to MD conversion doesn't work properly for us..."
+echo "Warning: pandoc XML/HTML to MD conversion doesn't work properly for us..."
 
 cd doc/md
-find . -name '*.xml' | while read xml; do
-	pandoc -f docbook -t markdown -s "$xml" -o "${xml%.*}.md"
-	rm "$xml"
+find . -name '*.html' | while read html; do
+	pandoc -f html -t markdown -s "$html" -o "${html%.*}.md"
+	rm "$html"
 done
 
 exit 1
@@ -23,6 +23,10 @@ rm -rf wiki/*
 cp -Rf build/libopc/doc/md/* wiki/
 
 cd wiki
-mv indexpage.md Home.md
+mkdir -p images
+mv *.png images/
+#rm *.css
+#rm *.js
+#mv indexpage.md Home.md
 
 exit 0
