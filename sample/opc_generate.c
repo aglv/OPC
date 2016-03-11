@@ -42,6 +42,7 @@
 
 
 #include <opc/opc.h>
+#include <opc/internal.h>
 #include <stdio.h>
 #include <time.h>
 #include <libxml/xmlsave.h>
