@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 d=`pwd`
 
 if [ ! -d libopc ] ; then
