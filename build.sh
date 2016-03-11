@@ -2,15 +2,17 @@
 
 d=`pwd`
 
-if [ ! -f build/libopc.zip ] ; then
-	echo "Please download the libopc archive from https://libopc.codeplex.com/SourceControl/latest# and move the downloaded zip file to $d/build/libopc.zip"
+if [ ! -d libopc ] ; then
+	echo "please, properly check out the libopc submodule..."
 	exit 1
 fi
 
-mkdir -p build
 rm -Rf build/libopc
 
-ditto -xk build/libopc.zip build/libopc
+cd libopc
+git checkout-index -f -a --prefix=../build/libopc/
+cd ..
+
 export MACOSX_DEPLOYMENT_TARGET=10.7
 
 function build {
@@ -104,8 +106,8 @@ for target in release debug; do
 	
 	build "darwin-$target-gcc-universal" "$target" "x86_64,i386"
 	
-	rm -Rf "$d/libs/$target/OPC.framework"
-	cp -af "$d/build/libopc/build/darwin-$target-gcc-universal/static/OPC.framework" "$d/libs/$target/"
+	rm -Rf "$d/build/libs/$target/OPC.framework"
+	cp -af "$d/build/libopc/build/darwin-$target-gcc-universal/static/OPC.framework" "$d/build/libs/$target/"
 done
 
 echo done
