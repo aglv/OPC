@@ -103,11 +103,11 @@ static void generate_relations(opcContainer *c, FILE *out, opcPart root) {
        ;OPC_RELATION_INVALID!=rel
        ;rel=opcRelationNext(c, root, rel)) {
             const xmlChar *prefix=NULL;
-            opc_uint32_t counter=-1;
+            opc_uint32_t counter=OPC_CONTAINER_RELID_COUNTER_NONE;
             const xmlChar *type=NULL;
             opcRelationGetInformation(c, root, rel, &prefix, &counter, &type);
             char buf[20]="";
-            if (-1!=counter) {
+            if (OPC_CONTAINER_RELID_COUNTER_NONE!=counter) {
                 sprintf(buf, "%i", counter);
             }
             opcPart internal_target=opcRelationGetInternalTarget(c, root, rel);
