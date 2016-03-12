@@ -182,7 +182,7 @@ static opc_uint32_t insertRelPrefix(opcContainer *container, const xmlChar *relP
 }
 
 static opc_uint32_t findRelPrefix(opcContainer *container, const xmlChar *relPrefix, opc_uint32_t relPrefixLen) {
-    for(opc_uint32_t i=0;i<=container->relprefix_items;i++) {
+    for(opc_uint32_t i=0;i<container->relprefix_items;i++) {
         if (0==xmlStrncmp(container->relprefix_array[i].prefix, relPrefix, relPrefixLen) && 0==container->relprefix_array[i].prefix[relPrefixLen]) {
             return i;
         }
