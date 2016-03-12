@@ -153,10 +153,6 @@ opc_error_t opcRelationDelete(opcContainer *container, opcPart part, const xmlCh
 }
 
 const xmlChar *opcRelationGetType(opcContainer *container, opcPart part, opcRelation relation) {
-    if (OPC_PART_INVALID==part) {
-        return NULL;
-    } else {
-        opcContainerRelation* rel=_opcRelationFind(container, part, relation);
-        return (rel!=NULL?rel->relation_type:OPC_RELATION_INVALID);
-    }
+    opcContainerRelation* rel=_opcRelationFind(container, part, relation);
+    return (NULL!=rel?rel->relation_type:OPC_RELATION_INVALID);
 }
