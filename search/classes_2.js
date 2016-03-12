@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['opc_5fcontainer_5fextension_5fstruct',['OPC_CONTAINER_EXTENSION_STRUCT',['../struct_o_p_c___c_o_n_t_a_i_n_e_r___e_x_t_e_n_s_i_o_n___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fcontainer_5fexternal_5frelation_5fstruct',['OPC_CONTAINER_EXTERNAL_RELATION_STRUCT',['../struct_o_p_c___c_o_n_t_a_i_n_e_r___e_x_t_e_r_n_a_l___r_e_l_a_t_i_o_n___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fcontainer_5finputstream_5fstruct',['OPC_CONTAINER_INPUTSTREAM_STRUCT',['../struct_o_p_c___c_o_n_t_a_i_n_e_r___i_n_p_u_t_s_t_r_e_a_m___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fcontainer_5foutputstream_5fstruct',['OPC_CONTAINER_OUTPUTSTREAM_STRUCT',['../struct_o_p_c___c_o_n_t_a_i_n_e_r___o_u_t_p_u_t_s_t_r_e_a_m___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fcontainer_5fpart_5fprefix_5fstruct',['OPC_CONTAINER_PART_PREFIX_STRUCT',['../struct_o_p_c___c_o_n_t_a_i_n_e_r___p_a_r_t___p_r_e_f_i_x___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fcontainer_5fpart_5fstruct',['OPC_CONTAINER_PART_STRUCT',['../struct_o_p_c___c_o_n_t_a_i_n_e_r___p_a_r_t___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fcontainer_5frelation_5fstruct',['OPC_CONTAINER_RELATION_STRUCT',['../struct_o_p_c___c_o_n_t_a_i_n_e_r___r_e_l_a_t_i_o_n___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fcontainer_5frelation_5ftype_5fstruct',['OPC_CONTAINER_RELATION_TYPE_STRUCT',['../struct_o_p_c___c_o_n_t_a_i_n_e_r___r_e_l_a_t_i_o_n___t_y_p_e___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fcontainer_5fstruct',['OPC_CONTAINER_STRUCT',['../struct_o_p_c___c_o_n_t_a_i_n_e_r___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fcontainer_5ftype_5fstruct',['OPC_CONTAINER_TYPE_STRUCT',['../struct_o_p_c___c_o_n_t_a_i_n_e_r___t_y_p_e___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fdc_5fsimple_5ftype',['OPC_DC_SIMPLE_TYPE',['../struct_o_p_c___d_c___s_i_m_p_l_e___t_y_p_e.html',1,'']]],
+  ['opc_5ffilerawbuffer_5fstruct',['OPC_FILERAWBUFFER_STRUCT',['../struct_o_p_c___f_i_l_e_r_a_w_b_u_f_f_e_r___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5ffilerawstate_5fstruct',['OPC_FILERAWSTATE_STRUCT',['../struct_o_p_c___f_i_l_e_r_a_w_s_t_a_t_e___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fio_5fstruct',['OPC_IO_STRUCT',['../struct_o_p_c___i_o___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fproperties_5fstruct',['OPC_PROPERTIES_STRUCT',['../struct_o_p_c___p_r_o_p_e_r_t_i_e_s___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fqname_5flevel',['OPC_QNAME_LEVEL',['../struct_o_p_c___q_n_a_m_e___l_e_v_e_l.html',1,'']]],
+  ['opc_5frelation_5fstruct',['OPC_RELATION_STRUCT',['../struct_o_p_c___r_e_l_a_t_i_o_n___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fzip_5fsegment_5finfo_5fstruct',['OPC_ZIP_SEGMENT_INFO_STRUCT',['../struct_o_p_c___z_i_p___s_e_g_m_e_n_t___i_n_f_o___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fzip_5fstruct',['OPC_ZIP_STRUCT',['../struct_o_p_c___z_i_p___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fzipinflatestate_5fstruct',['OPC_ZIPINFLATESTATE_STRUCT',['../struct_o_p_c___z_i_p_i_n_f_l_a_t_e_s_t_a_t_e___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fzipinputstream_5fstruct',['OPC_ZIPINPUTSTREAM_STRUCT',['../struct_o_p_c___z_i_p_i_n_p_u_t_s_t_r_e_a_m___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fziploader_5fio_5fhelper_5fstruct',['OPC_ZIPLOADER_IO_HELPER_STRUCT',['../struct_o_p_c___z_i_p_l_o_a_d_e_r___i_o___h_e_l_p_e_r___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fzipoutputstream_5fstruct',['OPC_ZIPOUTPUTSTREAM_STRUCT',['../struct_o_p_c___z_i_p_o_u_t_p_u_t_s_t_r_e_a_m___s_t_r_u_c_t.html',1,'']]],
+  ['opc_5fzipsegment_5fstruct',['OPC_ZIPSEGMENT_STRUCT',['../struct_o_p_c___z_i_p_s_e_g_m_e_n_t___s_t_r_u_c_t.html',1,'']]]
+];
