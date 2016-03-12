@@ -16,19 +16,19 @@ if [ ! -f libopc/configure ] ; then
 	cd ..
 fi
 
-exit 0
-
 rm -Rf build/libopc
 cp -af libopc build/
 
 cd build/libopc
 doxygen Doxyfile
 
+cd ../..
+
+cp -af build/libopc/doc/html/* doc/
+
 exit 0
 
-cd build/libopc/doc/
 
-cp -Rf doc/html doc/md
 
 echo "Warning: pandoc XML/HTML to MD conversion doesn't work properly for us..."
 
