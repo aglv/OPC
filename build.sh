@@ -4,9 +4,10 @@ set -e
 
 d=`pwd`
 
-if [ ! -d libopc ] ; then
-	echo "please, properly check out the libopc submodule..."
-	exit 1
+if [ ! -f libopc/configure ] ; then
+	cd libopc
+	git submodule update --init
+	cd ..
 fi
 
 rm -Rf build/libopc
