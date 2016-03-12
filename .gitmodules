@@ -1,7 +1,8 @@
-[submodule "wiki"]
-	path = wiki
-	url = git@github.com:aglv/OPC.wiki.git
 [submodule "libopc"]
 	path = libopc
 	url = git@github.com:aglv/OPC.git
 	branch = libopc
+[submodule "doc"]
+	path = doc
+	url = git@github.com:aglv/OPC.git
+	branch = gh-pages
