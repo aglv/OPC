@@ -11,10 +11,7 @@ if [ ! -f libopc/configure ] ; then
 fi
 
 rm -Rf build/libopc
-
-cd libopc
-git checkout-index -f -a --prefix=../build/libopc/
-cd ..
+cp -af libopc build/
 
 export MACOSX_DEPLOYMENT_TARGET=10.7
 
