@@ -93,11 +93,19 @@ function build {
 	    sed -i '' -e "s/^\(#[ ]*include \)<\(plib\/.*\)>/\1\"..\/\2\"/g" "$header"
 	done
 	
+#	cd ..
+#	mkdir -p Modules
+#	cd Modules
+#	
+#	rm -f module.modulemap
+#	echo "framework module libopc {\n\tumbrella header \"libopc.h\"\n\t\n\texport *\n\tmodule * { export * }\n}" >> module.modulemap
+	
 	cd ../..
 	ln -s A Current
 	cd ..
 	ln -s Versions/Current/libopc libopc
 	ln -s Versions/Current/Headers Headers
+#	ln -s Versions/Current/Modules Modules
 }
 
 for target in release debug; do
