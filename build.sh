@@ -10,30 +10,29 @@ if [ ! -f libopc/configure ] ; then
 	cd ..
 fi
 
-rm -Rf build/libopc
-cp -af libopc build/
-
 export MACOSX_DEPLOYMENT_TARGET=10.7
 
 function build {
 	platform="$1"
 	target="$2"
 	architectures="$3"
-
-	./configure --platform="$platform" --target="$target" --arch="$architectures"
 	
-	archs=''
-	while IFS=',' read -ra architecture; do
-		for arch in "${architecture[@]}"; do
-			archs="-arch $arch $archs"
+	if [ ! -f "build/configure.ctx" ]; then
+		./configure --platform="$platform" --target="$target" --arch="$architectures"
+		
+		archs=''
+		while IFS=',' read -ra architecture; do
+			for arch in "${architecture[@]}"; do
+				archs="-arch $arch $archs"
+			done
+		done <<< "$architectures"
+		
+		echo "fixing Makefiles CPPFLAGS to $archs"
+		
+		find "build/$platform" -name 'Makefile*' | while read m; do
+			sed -i '' -e "s/^CPPFLAGS=-arch x86_64/CPPFLAGS=$archs/g" "$m"
 		done
-	done <<< "$architectures"
-	
-	echo "fixing Makefiles CPPFLAGS to $archs"
-	
-	find "build/$platform" -name 'Makefile*' | while read m; do
-		sed -i '' -e "s/^CPPFLAGS=-arch x86_64/CPPFLAGS=$archs/g" "$m"
-	done
+	fi
 	
 	make
 	
@@ -60,32 +59,32 @@ function build {
 		done
 	done <<< "$architectures"
 	
-	mkdir -p OPC.framework/Versions/A
-	lipo $archs -create -output OPC.framework/Versions/A/OPC
+	mkdir -p libopc.framework/Versions/A
+	lipo $archs -create -output libopc.framework/Versions/A/libopc
 		
 	rm -Rf tmp
 	
-	mkdir -p OPC.framework/Versions/A/Headers/opc
-	cp ../../../opc/*.h OPC.framework/Versions/A/Headers/opc
-	cp ../../../config/opc/*.h OPC.framework/Versions/A/Headers/opc
-	mkdir -p OPC.framework/Versions/A/Headers/mce
-	cp ../../../mce/*.h OPC.framework/Versions/A/Headers/mce
-	cp ../../../config/mce/*.h OPC.framework/Versions/A/Headers/mce
-	mkdir -p OPC.framework/Versions/A/Headers/plib
-	cp include/build_plib_config_platform_plib_include/plib/* OPC.framework/Versions/A/Headers/plib
+	mkdir -p libopc.framework/Versions/A/Headers/opc
+	cp ../../../opc/*.h libopc.framework/Versions/A/Headers/opc
+	cp ../../../config/opc/*.h libopc.framework/Versions/A/Headers/opc
+	mkdir -p libopc.framework/Versions/A/Headers/mce
+	cp ../../../mce/*.h libopc.framework/Versions/A/Headers/mce
+	cp ../../../config/mce/*.h libopc.framework/Versions/A/Headers/mce
+	mkdir -p libopc.framework/Versions/A/Headers/plib
+	cp include/build_plib_config_platform_plib_include/plib/* libopc.framework/Versions/A/Headers/plib
 	
-	cd OPC.framework/Versions/A/Headers
-	rm -f OPC.h
+	cd libopc.framework/Versions/A/Headers
+	rm -f libopc.h
 	
-	echo "// OPC.framework built by Alessandro Volz, © 2016 volz.io\n" >> OPC.h
+	echo "// libopc.framework built by Alessandro Volz, © 2016 volz.io\n" >> libopc.h
 	find . -name '*.h' | while read header; do
-		if [ "$header" = "./OPC.h" ]; then continue; fi
+		if [ "$header" = "./libopc.h" ]; then continue; fi
 		
 		name="${header##*/}"
 		dir="${header%$name}"
 		dir="${dir:2}"
 
-		echo "#import \"$dir$name\"" >> OPC.h
+		echo "#import \"$dir$name\"" >> libopc.h
 
 		sed -i '' -e "s/^\(#[ ]*include \)<${dir//\//\\/}\(.*\)>/\1\"\2\"/g" "$header"
 	
@@ -97,17 +96,25 @@ function build {
 	cd ../..
 	ln -s A Current
 	cd ..
-	ln -s Versions/Current/OPC OPC
+	ln -s Versions/Current/libopc libopc
 	ln -s Versions/Current/Headers Headers
 }
 
 for target in release debug; do
-	cd "$d/build/libopc"
+	cd "$d"
 	
+	mkdir -p "build/$target"
+	cp -af libopc "build/$target/"
+	cd "$d/build/$target/libopc"
+	
+	framework="$d/build/$target/libopc/build/darwin-$target-gcc-universal/static/libopc.framework"
+	rm -Rf "$framework"
+
 	build "darwin-$target-gcc-universal" "$target" "x86_64,i386"
 	
-	rm -Rf "$d/build/libs/$target/OPC.framework"
-	cp -af "$d/build/libopc/build/darwin-$target-gcc-universal/static/OPC.framework" "$d/build/libs/$target/"
+	mkdir -p "$d/build/frameworks/$target"
+	rm -Rf "$d/build/frameworks/$target/libopc.framework"
+	cp -af "$framework" "$d/build/frameworks/$target/"
 done
 
 echo done
